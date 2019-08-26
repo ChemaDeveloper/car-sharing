@@ -9,4 +9,4 @@ services:
     ports:
       - 8080:8080
       - 9229:9229
-    command: npm start
+    entrypoint: npm run start
