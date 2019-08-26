@@ -1,0 +1,88 @@
+{
+  "Users": [
+    {
+      "position": {
+        "lat":"40.00",
+        "lon":"1.00"
+      },
+      "route": {
+        "travelTime":"22/08/2019 08:00:00",
+        "userRol":"Diver",
+        "pasengers":[]
+      },
+      "moneybox":"5",
+      "seats": "4",
+      "username": "Pepe Fernandez"
+    },
+    {
+      "position": {
+        "lat":"41.00",
+        "lon":"1.00"
+      },
+      "route": {
+        "travelTime":"22/08/2019 08:00:00",
+        "userRol":"Pasenger",
+        "pasengers":[]
+      },
+      "moneybox":"5",
+      "seats": "4",
+      "username": "Pepe García"
+    },
+    {
+      "position": {
+        "lat":"41.00",
+        "lon":"1.00"
+      },
+      "route": {
+        "travelTime":"22/08/2019 08:00:00",
+        "userRol":"Pasenger",
+        "pasengers":[]
+      },
+      "moneybox":"5",
+      "seats": "4",
+      "username": "Pepe Rivera"
+    },
+    {
+      "position": {
+        "lat":"40.00",
+        "lon":"1.00"
+      },
+      "route": {
+        "travelTime":"22/08/2019 08:00:00",
+        "userRol":"Pasenger",
+        "pasengers":[]
+      },
+      "moneybox":"5",
+      "seats": "4",
+      "username": "Pepe Perez"
+    },
+    {
+      "position": {
+        "lat":"40.00",
+        "lon":"1.00"
+      },
+      "route": {
+        "travelTime":"22/08/2019 08:00:00",
+        "userRol":"Diver",
+        "pasengers":[]
+      },
+      "moneybox":"5",
+      "seats": "4",
+      "username": "Pepe Rodriguez"
+    },
+    {
+      "position": {
+        "lat":"40.00",
+        "lon":"1.00"
+      },
+      "route": {
+        "travelTime":"22/08/2019 08:00:00",
+        "userRol":"Pasenger",
+        "pasengers":[]
+      },
+      "moneybox":"5",
+      "seats": "4",
+      "username": "Paco Perez"
+    }
+  ]
+}
