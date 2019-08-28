@@ -8,6 +8,7 @@ var userApp = express()
 userApp.get('/', (req, res) => {
   res.status(200)
      .send(users)
+     console.log(users)
 })
 
 userApp.get('/filter/:filter', (req, res) => {
@@ -22,9 +23,20 @@ userApp.get('/restart', (req, res) => {
      .send(users)
 })
 
-userApp.get('/create/:name/:position/:seats/:userrol', (req, res) => {
-  users.createUser(req.params.name, req.params.position, req.params.seats, req.params.userrol)
+
+
+
+userApp.post('/create/:name/:lat/:lon/:seats/:userrol', (req, res) => {
+  users.createUser(req.params.name, req.params.lat, req.params.lon, req.params.seats, req.params.userrol)
   res.status(201)
      .send(users)
+})
+userApp.put('/update/:name/:lat/:lon/:seats/:userrol', (req, res) => {
+  users.updateUser(req.params.name, req.params.lat, req.params.lon, req.params.seats, req.params.userrol)
+  res.status(201)
+      .json({users: users, params: req.params})
+})
+userApp.delete('remove/:name', (req, res) => {
+
 })
 module.exports = userApp
