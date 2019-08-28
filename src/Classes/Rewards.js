@@ -1,6 +1,6 @@
 'use strict';
-var Users = require('../Classes/Users')
-var users = new Users(require('../utils/baseData.json'))
+let Users = require('../Classes/Users')
+let users = new Users(require('../utils/baseData.json'))
 
 class Rewards {
   constructor() {
