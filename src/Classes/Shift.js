@@ -6,7 +6,7 @@ class Shift {
   constructor() {
   }
   makeShifts() {
-    let drivers = new Users(users.userList.filter(user => user.route.userRol == "Diver"))
+    let drivers = new Users()
     console.log(drivers)
     console.log(users)
     return users

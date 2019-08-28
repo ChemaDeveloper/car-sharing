@@ -9,4 +9,9 @@ shiftApi.get('/make', (req, res) => {
      .json(shift.makeShifts())
 })
 
+shiftApi.get('/drivers', (req, res) => {
+  res.status(201)
+     .json(shift.makeShifts())
+})
+
 module.exports = shiftApi
