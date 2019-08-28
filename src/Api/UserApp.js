@@ -27,4 +27,13 @@ userApp.get('/create/:name/:position/:seats/:userrol', (req, res) => {
   res.status(201)
      .send(users)
 })
+
+userApp.get('/userDistance/:position/:fecha', (req, res) => {
+  let orderedUsers = users.getUserOrderByTimeDistance(users, req.params.position, req.params.fecha);
+
+  res.status(201)
+     .send(users)
+})
+
+
 module.exports = userApp
