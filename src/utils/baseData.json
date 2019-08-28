@@ -23,7 +23,7 @@
       "userRol":"Pasenger",
       "pasengers":[]
     },
-    "moneybox":"5",
+    "moneybox": 5,
     "seats": "4",
     "username": "Pepe García"
   },
@@ -37,7 +37,7 @@
       "userRol":"Pasenger",
       "pasengers":[]
     },
-    "moneybox":"5",
+    "moneybox": 5,
     "seats": "4",
     "username": "Pepe Rivera"
   },
@@ -51,7 +51,7 @@
       "userRol":"Pasenger",
       "pasengers":[]
     },
-    "moneybox":"5",
+    "moneybox": 5,
     "seats": "4",
     "username": "Pepe Perez"
   },
@@ -65,7 +65,7 @@
       "userRol":"Diver",
       "pasengers":[]
     },
-    "moneybox":"5",
+    "moneybox": 5,
     "seats": "4",
     "username": "Pepe Rodriguez"
   },
@@ -79,7 +79,7 @@
       "userRol":"Pasenger",
       "pasengers":[]
     },
-    "moneybox":"5",
+    "moneybox": 5,
     "seats": "4",
     "username": "Paco Perez"
   }

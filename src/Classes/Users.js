@@ -5,6 +5,7 @@ class Users {
   constructor(data) {
     this.userList = data
     store.set('userBackup', data)
+    store.set()
   }
 
   restartUserList() {
