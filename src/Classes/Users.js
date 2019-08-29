@@ -62,7 +62,7 @@ class Users {
     let currentDate = new Date();//dateTime momento de la peticion
 
     let usersOrdered = []
-    this.userList.forEach(user => {
+    users.userList.forEach(user => {
       if (FUNCTIONS.parseDateTime(user.route.travelTime) >= currentDate) {
             usersOrdered.push({
               username: user.username,
@@ -72,7 +72,7 @@ class Users {
             })
           }
     })
-    return usersOrdered.sort(FUNCTIONS.orderUsersByDateTimeAndDistance)
+    return usersOrdered.sort(FUNCTIONS.getSortMethod('+gapTime', '+distance'))
   }
 
   //recibir los conductores
@@ -83,22 +83,7 @@ class Users {
     console.log(this.userList.sort(this.getSortMethod('+seats')))
   }
 
-  getSortMethod(){
-    var _args = Array.prototype.slice.call(arguments)
-    return (a, b) => {
-        for(let x in _args){
-            let ax = a[_args[x].substring(1)]
-            let bx = b[_args[x].substring(1)]
-            let cx
 
-            ax = typeof ax == "string" ? ax.toLowerCase() : ax / 1
-            bx = typeof bx == "string" ? bx.toLowerCase() : bx / 1
-
-            if(_args[x].substring(0,1) == "-"){cx = ax; ax = bx; bx = cx;}
-            if(ax != bx){return ax < bx ? -1 : 1;}
-        }
-    }
-  }
 
 }
 

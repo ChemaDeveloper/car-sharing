@@ -1,12 +1,14 @@
 'use strict'
 
-    const parseDateTime = (strDateTime)=>{
+    const parseDateTime = (strDateTime) => {
         let dayUser = strDateTime.substring(0,2);
         let monthUser = strDateTime.substring(3,5);
         let yearUser = strDateTime.substring(6,10);
         let hourUser = strDateTime.substring(11,13);
         let minutesUser = strDateTime.substring(14,16);
         let secondsUser = strDateTime.substring(17,19);
+        let splittedTime = strDateTime.split(/(:| |\/)/)
+        console.log(splittedTime);
         let userDateTimeTraveler = new Date(yearUser, monthUser, dayUser, hourUser, minutesUser, secondsUser);
 
         return userDateTimeTraveler;
@@ -66,28 +68,25 @@
         return [xAbscisas, yOrdenada];
     }
 
-    const orderUsersByDateTimeAndDistance = (a,b) => {
-        let order;
-        if(a.gapTime > b.gapTime){
-            order = 1;
-        }else if(a.gapTime < b.gapTime){
-            order = -1;
-        }else{//misma fecha/ diferencio por distancia
-            if(a.distanceKm > b.distanceKm){
-                order = 1;
-            }
-            else if(a.distanceKm < b.distanceKm){
-                order -1;
-            }
-            else{//distancia y fecha iguales, diferencia por el nombre ?
-                order =0;
-            }
-        }
-        return order;
+    function getSortMethod() {
+      var _args = Array.prototype.slice.call(arguments)
+      return (a, b) => {
+          for(let x in _args){
+              let ax = a[_args[x].substring(1)]
+              let bx = b[_args[x].substring(1)]
+              let cx
+
+              ax = typeof ax == "string" ? ax.toLowerCase() : ax / 1
+              bx = typeof bx == "string" ? bx.toLowerCase() : bx / 1
+
+              if(_args[x].substring(0,1) == "-"){cx = ax; ax = bx; bx = cx;}
+              if(ax != bx){return ax < bx ? -1 : 1;}
+          }
+      }
     }
 
 module.exports = {
     parseDateTime,
     calcDistance,
-    orderUsersByDateTimeAndDistance
+    getSortMethod
 }
