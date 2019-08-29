@@ -60,25 +60,26 @@ class Users {
   getUserOrderByTimeDistance(users, positionDriver, dateTimeDr) {
     let latLongDriver = JSON.parse(positionDriver)
     let dateTimeDriver = FUNCTIONS.parseDateTime(dateTimeDr)
-    let usrOrderByPositionDate=[];//usuraios ordenador por hora salida y distancia
-    let userAllow=[];
     let dateMoment = new Date();//dateTime momento de la peticion
-    //creo un array con los viajeros
-    for(let i = 0;i < users.userList.length ;i++){
-      let userDateTimeTraveler = FUNCTIONS.parseDateTime(users.userList[i].route.travelTime);
-      if(userDateTimeTraveler >= dateMoment //fecha salida mayor o igual a el momento de la peticion,
-          && users.userList[i].route.userRol == 'Passenger' //solo pasajeros
-          && users.userList[i].route.passengers.length < users.userList[i].seats){//Al conductor debe quedarle hueco.
-          //calcular la distancia de cada usuario y añadirla en el nuevo array
-          let distanceArrivalsPoints = FUNCTIONS.calcDistance(latLongDriver, users.userList[i].position);
-          let gapTime = userDateTimeTraveler - dateTimeDriver; //milisegundos (horas /1000/60/60)
-        //array con posibles pasajeros para ordenar por tiempo y distancia
-        userAllow.push(users.userList[i])
-          userAllow[userAllow.length-1].distanceKm = parseFloat(distanceArrivalsPoints)
-          userAllow[userAllow.length-1].gapTime=gapTime;//milisegundos
-      }
-    }
+
+    let usersOrdered = []
+    this.userList.forEach(user => {
+      console.log(user.route.userRol.toLowerCase(), "passenger");
+      if (FUNCTIONS.parseDateTime(user.route.travelTime) >= dateMoment
+          && user.route.userRol.toLowerCase() === "passenger") {
+            usersOrdered.push({
+              username: user.username,
+              distance: parseFloat(FUNCTIONS.calcDistance(latLongDriver, user.position)),
+              gapTime: FUNCTIONS.parseDateTime(user.route.travelTime) - dateTimeDriver,
+            })
+          }
+    })
+    return usersOrdered.sort(FUNCTIONS.orderUsersByDateTimeAndDistance)
   }
+
+  //recibir los conductores
+  //Ver como de lejos de los conductores esta cada usuario
+  //Metes a los usuarios en menos de una distancia en el coche del conductores
 
   sortUsers(params) {
     console.log(this.userList.sort(this.getSortMethod('+seats')))
@@ -99,10 +100,6 @@ class Users {
             if(ax != bx){return ax < bx ? -1 : 1;}
         }
     }
-    // ordenar para salir con hora anteriores y posteriores ///*&& userDateTimeTraveler >= dateTimeDriver*/-->y a el momento de salida del viaje
-    // ordeno de menor a mayor tiempo, en caso de coincidencia, calculo la distancia
-    usrOrderByPositionDate = userAllow.sort(FUNCTIONS.orderUsersByDateTimeAndDistance);
-    return usrOrderByPositionDate;
   }
 
 }
