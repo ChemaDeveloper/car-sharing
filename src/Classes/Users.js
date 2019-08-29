@@ -59,12 +59,6 @@ class Users {
         return this.userList
     }
 
-    getPassengersOrdererByTimeDistance(users, keyUser) {
-        let allUsersOrder = this.getUserOrderByTimeDistance(users, keyUser);
-        let passengersFilterOrdered = this.filterUsers(allUsersOrder, 'Passenger');
-
-        return passengersFilterOrdered;
-    }
 
     getUserOrderByTimeDistance(users, keyUser) {
         let dateTimeKey = FUNCTIONS.parseDateTime(keyUser.route.travelTime)
@@ -84,7 +78,7 @@ class Users {
         return usersOrdered.sort(FUNCTIONS.orderUsersByDateTimeAndDistance)
     }
 
-    filterUsers(allUsersOrdered, filter) {
+    filterUsersByUserRol(allUsersOrdered, filter) {
         let usersOrderedFilter = [];
         allUsersOrdered.forEach(
             user => {

@@ -30,7 +30,7 @@ userApp.post('/create/:name/:lat/:lon/:seats/:userrol', (req, res) => {
 })
 
 userApp.get('/userDistance', (req, res) => {
-  let orderedUsers = users.getPassengersOrdererByTimeDistance(users, {
+  let orderedUsers = users.getUserOrderByTimeDistance(users, {
                                                                 position: JSON.parse(req.body.position), 
                                                                 route: {
                                                                   travelTime: req.body.fecha
