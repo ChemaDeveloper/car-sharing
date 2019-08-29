@@ -28,11 +28,12 @@ userApp.get('/create/:name/:position/:seats/:userrol', (req, res) => {
      .send(users)
 })
 
-userApp.get('/userDistance/:position/:fecha', (req, res) => {
-  let orderedUsers = users.getUserOrderByTimeDistance(users, req.params.position, req.params.fecha);
-
+userApp.get('/userDistance', (req, res) => {
+  let orderedUsers = users.getUserOrderByTimeDistance(users, req.body.position, req.body.fecha);
+  // let orderedUsers = users.getUserOrderByTimeDistance(users, req.params.position, req.params.fecha);
   res.status(201)
-     .send(users)
+     .json(orderedUsers)
+  console.log(orderedUsers);
 })
 
 

@@ -1,6 +1,6 @@
 'use strict'
 
-    const parseDateTieme = (strDateTime)=>{
+    const parseDateTime = (strDateTime)=>{
         let dayUser = strDateTime.substring(0,2);
         let monthUser = strDateTime.substring(3,5);
         let yearUser = strDateTime.substring(6,10);
@@ -59,8 +59,8 @@
         }
 
     const latLangToRadians = (marcador) => {
-        let lat = marcador[0];
-        let lng = marcador[1];
+        let lat = marcador['lat'];
+        let lng = marcador['lon'];
         let xAbscisas = lat * Math.PI / 180;
         let yOrdenada = lng * Math.PI / 180;
         return [xAbscisas, yOrdenada];
@@ -68,13 +68,26 @@
 
     const orderUsersByDateTimeAndDistance = (a,b) => {
         let order;
-        if(a.route.travelTime-b){
-
+        if(a.gapTime > b.gapTime){
+            order = 1;
+        }else if(a.gapTime < b.gapTime){
+            order = -1;
+        }else{//misma fecha/ diferencio por distancia
+            if(a.distanceKm > b.distanceKm){
+                order = 1;
+            }
+            else if(a.distanceKm < b.distanceKm){
+                order -1;
+            }
+            else{//distancia y fecha iguales, diferencia por el nombre ?
+                order =0;
+            }
         }
+        return order;
     }
 
 module.exports = {
-    parseDateTieme,
+    parseDateTime,
     calcDistance,
     orderUsersByDateTimeAndDistance
 }
