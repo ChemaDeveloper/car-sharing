@@ -57,20 +57,18 @@ class Users {
     return this.userList
   }
 
-  getUserOrderByTimeDistance(users, positionDriver, dateTimeDr) {
-    let latLongDriver = JSON.parse(positionDriver)
-    let dateTimeDriver = FUNCTIONS.parseDateTime(dateTimeDr)
-    let dateMoment = new Date();//dateTime momento de la peticion
+  getUserOrderByTimeDistance(users, keyUser) {
+    let dateTimeKey = FUNCTIONS.parseDateTime(keyUser.route.travelTime)
+    let currentDate = new Date();//dateTime momento de la peticion
 
     let usersOrdered = []
     this.userList.forEach(user => {
-      console.log(user.route.userRol.toLowerCase(), "passenger");
-      if (FUNCTIONS.parseDateTime(user.route.travelTime) >= dateMoment
-          && user.route.userRol.toLowerCase() === "passenger") {
+      if (FUNCTIONS.parseDateTime(user.route.travelTime) >= currentDate) {
             usersOrdered.push({
               username: user.username,
-              distance: parseFloat(FUNCTIONS.calcDistance(latLongDriver, user.position)),
-              gapTime: FUNCTIONS.parseDateTime(user.route.travelTime) - dateTimeDriver,
+              distance: parseFloat(FUNCTIONS.calcDistance(keyUser.position, user.position)),
+              gapTime: FUNCTIONS.parseDateTime(user.route.travelTime) - dateTimeKey,
+              userRol: user.route.userRol
             })
           }
     })
