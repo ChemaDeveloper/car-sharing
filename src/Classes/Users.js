@@ -27,32 +27,35 @@ class Users {
       "seats": seats,
       "username": name
     })
+    return this.userList
   }
   readAll(){
-    this.userList.find()
+    return this.userList
   }
   readbyUser(name){
-    this.userList.find()
+    return this.userList.filter((user) => user.username == name)
   }
-  updateUser(name, lat, lon, seats, userRol){
-    this.userList.push({
-      "position": {
-        "lat": lat,
-        "lon":lon
-      },
-      "route": {
-        "travelTime":"22/08/2019 08:00:00",
-        "userRol": userRol,
-        "pasengers":[]
-      },
-      "moneybox":"5",
-      "seats": seats,
-      "username": name
+  
+  updateUser(username, lat, lon, userrol, seats){
+    let userToUpdate = this.readbyUser(username)
+    userToUpdate[0].position.lat = lat;
+    userToUpdate[0].position.lon = lon;
+    userToUpdate[0].route.userRol = userrol;
+    userToUpdate[0].seats = seats;
+    return userToUpdate;
+  }
+  deleteUser(username) {
+    this.userList = this.userList.filter (it =>{
+      if (it.username !== username) {
+        return it;
+      }
+
     })
+    console.log(this.userList);
+    return this.userList
   }
-  deleteUser(name) {
-    this.userList.delete(name);
-}
 }
 
 module.exports = Users
+
+
