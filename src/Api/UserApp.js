@@ -6,6 +6,7 @@ const express = require('express')
 var userApp = express()
 
 userApp.get('/', (req, res) => {
+  users.sortUsers()
   res.status(200)
      .send(users)
      console.log(users)

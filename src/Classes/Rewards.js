@@ -1,12 +1,13 @@
 'use strict';
-var users = require('../utils/baseData.json')
+let Users = require('../Classes/Users')
+let users = new Users(require('../utils/baseData.json'))
 
 class Rewards {
   constructor() {
   }
 
   addCoins(usernames, coins) {
-    users.map(user => {
+    users.userList.map(user => {
       if (usernames.indexOf(user.username) > -1) {
         user.moneybox += Number(coins)
       }
@@ -15,7 +16,7 @@ class Rewards {
   }
 
   removeCoins(usernames, coins) {
-    users.map(user => {
+    users.userList.map(user => {
       if (usernames.indexOf(user.username) > -1) {
         user.moneybox -= Number(coins)
       }

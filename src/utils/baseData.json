@@ -9,8 +9,8 @@
       "userRol":"Driver",
       "pasengers":[]
     },
-    "moneybox":"5",
-    "seats": "4",
+    "moneybox": 7,
+    "seats": "2",
     "username": "Pepe Fernandez"
   },
   {
@@ -24,7 +24,7 @@
       "pasengers":[]
     },
     "moneybox": 5,
-    "seats": "4",
+    "seats": "2",
     "username": "Pepe García"
   },
   {
@@ -38,7 +38,7 @@
       "pasengers":[]
     },
     "moneybox": 5,
-    "seats": "4",
+    "seats": "3",
     "username": "Pepe Rivera"
   },
   {
