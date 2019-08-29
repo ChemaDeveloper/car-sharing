@@ -38,15 +38,16 @@ class Users {
   readbyUser(name){
     return this.userList.filter((user) => user.username == name)
   }
-  
+
   updateUser(username, lat, lon, userrol, seats){
     let userToUpdate = this.readbyUser(username)
-    userToUpdate[0].position.lat = lat;
-    userToUpdate[0].position.lon = lon;
-    userToUpdate[0].route.userRol = userrol;
-    userToUpdate[0].seats = seats;
+    userToUpdate[0].position.lat = lat == null ? userToUpdate[0].position.lat : lat
+    userToUpdate[0].position.lon = lon == null ? userToUpdate[0].position.lon : lon
+    userToUpdate[0].route.userRol = userrol == null ? userToUpdate[0].route.userRol : userrol
+    userToUpdate[0].seats = seats == null ? userToUpdate[0].seats : seats
     return userToUpdate;
   }
+
   deleteUser(username) {
     this.userList = this.userList.filter (it =>{
       if (it.username !== username) {
@@ -76,7 +77,9 @@ class Users {
           userAllow[userAllow.length-1].distanceKm = parseFloat(distanceArrivalsPoints)
           userAllow[userAllow.length-1].gapTime=gapTime;//milisegundos
       }
-      
+    }
+  }
+
   sortUsers(params) {
     console.log(this.userList.sort(this.getSortMethod('+seats')))
   }
@@ -96,8 +99,8 @@ class Users {
             if(ax != bx){return ax < bx ? -1 : 1;}
         }
     }
-      // ordenar para salir con hora anteriores y posteriores ///*&& userDateTimeTraveler >= dateTimeDriver*/-->y a el momento de salida del viaje
-      // ordeno de menor a mayor tiempo, en caso de coincidencia, calculo la distancia
+    // ordenar para salir con hora anteriores y posteriores ///*&& userDateTimeTraveler >= dateTimeDriver*/-->y a el momento de salida del viaje
+    // ordeno de menor a mayor tiempo, en caso de coincidencia, calculo la distancia
     usrOrderByPositionDate = userAllow.sort(FUNCTIONS.orderUsersByDateTimeAndDistance);
     return usrOrderByPositionDate;
   }
@@ -105,5 +108,3 @@ class Users {
 }
 
 module.exports = Users
-
-
