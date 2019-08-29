@@ -5,7 +5,9 @@ class Users {
   constructor(data) {
     this.userList = data
     store.set('userBackup', data)
-    store.set()
+    this.userList.map(user => {
+      user.totalMoney = user.moneybox
+    })
   }
 
   restartUserList() {

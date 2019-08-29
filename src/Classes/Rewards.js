@@ -7,20 +7,36 @@ class Rewards {
   }
 
   addCoins(usernames, coins) {
-    users.userList.map(user => {
-      if (usernames.indexOf(user.username) > -1) {
-        user.moneybox += Number(coins)
-      }
-    })
+    if (typeof(usernames) == 'object') {
+      users.userList.map(user => {
+        if (usernames.indexOf(user.username) > -1) {
+          user.moneybox += Number(coins)
+          user.totalMoney += Number(coins)
+        }
+        return user
+      })
+    } else if (typeof(usernames) == 'string') {
+      let user = users.userList.filter(user => user.username === usernames)
+      user.moneybox += Number(coins)
+      user.totalMoney += Number(coins)
+    }
+
     return users
   }
 
   removeCoins(usernames, coins) {
-    users.userList.map(user => {
-      if (usernames.indexOf(user.username) > -1) {
-        user.moneybox -= Number(coins)
-      }
-    })
+    if (typeof(usernames) == 'object') {
+      users.userList.map(user => {
+        if (usernames.indexOf(user.username) > -1) {
+          user.moneybox -= Number(coins)
+        }
+        return user
+      })
+    } else if (typeof(usernames) == 'string') {
+      let user = users.userList.filter(user => user.username === usernames)
+      user.moneybox -= Number(coins)
+    }
+
     return users
   }
 }
