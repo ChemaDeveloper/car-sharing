@@ -6,7 +6,6 @@ const express = require('express')
 var userApp = express()
 
 userApp.get('/', (req, res) => {
-  users.sortUsers()
   res.status(200)
      .send(users)
      console.log(users)
@@ -29,6 +28,15 @@ userApp.post('/create/:name/:lat/:lon/:seats/:userrol', (req, res) => {
   res.status(201)
      .send(users)
 })
+
+userApp.get('/userDistance', (req, res) => {
+  let orderedUsers = users.getUserOrderByTimeDistance(users, req.body.position, req.body.fecha);
+  // let orderedUsers = users.getUserOrderByTimeDistance(users, req.params.position, req.params.fecha);
+  res.status(201)
+     .json(orderedUsers)
+  console.log(orderedUsers);
+})
+
 userApp.get('/detail/:name', (req, res) => {
   //users.userList = users.userList.filter((item) => item.name == "Pepe Fernandez")
   let user = users.readbyUser(decodeURI(req.params.name));
