@@ -31,7 +31,7 @@ userApp.post('/create/:name/:lat/:lon/:seats/:userrol', (req, res) => {
 
 userApp.get('/userDistance', (req, res) => {
   let orderedUsers = users.getUserOrderByTimeDistance(users, {
-                                                                position: JSON.parse(req.body.position), 
+                                                                position: JSON.parse(req.body.position),
                                                                 route: {
                                                                   travelTime: req.body.fecha
                                                                 }
@@ -53,7 +53,7 @@ userApp.put('/update', (req, res) => {
      .json({user: userUpdated, params: req.body});
 })
 
-userApp.get('/delete/:name', (req, res) => {
+userApp.post('/delete/:name', (req, res) => {
   let user = users.deleteUser(decodeURI(req.params.name));
   res.status(201)
   .json({user: user, params: req.params})
