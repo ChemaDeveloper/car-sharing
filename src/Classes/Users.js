@@ -66,7 +66,7 @@ class Users {
       if (FUNCTIONS.parseDateTime(user.route.travelTime) >= currentDate) {
             usersOrdered.push({
               username: user.username,
-              distance: parseFloat(FUNCTIONS.calcDistance(keyUser.position, user.position)),
+              distance: parseFloat(FUNCTIONS.distance(keyUser.position, user.position)),
               gapTime: FUNCTIONS.parseDateTime(user.route.travelTime) - dateTimeKey,
               userRol: user.route.userRol
             })
