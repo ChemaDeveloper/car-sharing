@@ -96,26 +96,30 @@ class Users {
     }
 
 
-  fillCar(name){
+  fillCar(name) {
       let strPassenger = 'Passenger';
-
-      let driver = this.userList.filter( user => user.username == name )
-      let allUsersOrderer = this.getUserOrderByTimeDistance(this, driver[0]);
+      let currentDriver = this.userList.filter(user => user.username == name)
+      let allUsersOrderer = this.getUserOrderByTimeDistance(this, currentDriver[0]);
       let passengersOrderer = this.filterUsersByUserRol(allUsersOrderer, strPassenger)
+      let drivers = this.userList.filter(user => user.route.userRol.toLowerCase() === 'driver')
 
       passengersOrderer.forEach(passenger => {
-          if(driver[0].route.passengers.length <  driver[0].seats){
-              driver[0].route.passengers.push(passenger)
+          let isInCar = drivers.filter(driver =>  driver.route.passengers.filter(iterPassenger => iterPassenger.username.indexOf(passenger.username) > -1).length > 0 )
+          if (currentDriver[0].route.passengers.length < currentDriver[0].seats && isInCar.length === 0) {
+              currentDriver[0].route.passengers.push(passenger)
           }
       })
-     return driver[0];
+      return currentDriver[0];
   }
+
 //añadir pasajeros una sola vez en el viaje mas cercano
   fillCars(){
       let drivers = this.filterUsersByUserRol(this.userList, 'Driver');
       let fillDrivers = drivers.map(driver => this.fillCar(driver.username))
       return fillDrivers;
   }
+
+
 
   sortUsers(params) {
     console.log(this.userList.sort(FUNCTIONS.getSortMethod('+seats')))
