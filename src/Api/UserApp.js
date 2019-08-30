@@ -40,6 +40,20 @@ userApp.get('/userDistance', (req, res) => {
      .json(orderedUsers)
 })
 
+userApp.get('/fillCar/:name', (req, res) => {
+  let driverUser = users.fillCar(req.params.name);
+  res.status(201)
+  .json(driverUser)
+})
+
+userApp.get('/fillCars', (req, res) => {
+  let drivers = users.fillCars();
+  res.status(201)
+  .json(drivers)
+})
+
+
+
 userApp.get('/detail/:name', (req, res) => {
   let user = users.readbyUser(decodeURI(req.params.name));
   res.status(201)
