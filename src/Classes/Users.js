@@ -75,9 +75,26 @@ class Users {
     return usersOrdered.sort(FUNCTIONS.getSortMethod('+gapTime', '+distance'))
   }
 
-  //recibir los conductores
-  //Ver como de lejos de los conductores esta cada usuario
-  //Metes a los usuarios en menos de una distancia en el coche del conductores
+    filterUsersByUserRol(allUsersOrdered, filter) {
+        let usersOrderedFilter = [];
+        allUsersOrdered.forEach(
+            user => {
+                if (user.userRol == filter) {
+                    usersOrderedFilter.push({
+                        username: user.username,
+                        distance: user.distance,
+                        gapTime: user.gapTime,
+                        userRol: user.userRol
+                    });
+                }
+            });
+
+        return usersOrderedFilter;
+    }
+
+    //recibir los conductores
+    //Ver como de lejos de los conductores esta cada usuario
+    //Metes a los usuarios en menos de una distancia en el coche del conductores
 
   sortUsers(params) {
     console.log(this.userList.sort(this.getSortMethod('+seats')))
