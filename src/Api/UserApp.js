@@ -9,18 +9,6 @@ userApp.get('/', (req, res) => {
      console.log(users)
 })
 
-userApp.get('/filter/:filter', (req, res) => {
-  users.userList = users.userList.filter((item) => item.seats == "4")
-  res.status(201)
-     .json({users: users, params: req.params})
-})
-
-userApp.get('/restart', (req, res) => {
-  users.restartUserList(req.params.name)
-  res.status(201)
-     .send(users)
-})
-
 userApp.post('/create/:name/:lat/:lon/:seats/:userrol', (req, res) => {
   users.createUser(req.params.name, req.params.lat, req.params.lon, req.params.seats, req.params.userrol)
   res.status(201)
@@ -62,8 +50,6 @@ userApp.get('/fillDriverBank', (req, res) => {
   .json(driversFillBank)
 })
 
-
-
 userApp.get('/detail/:name', (req, res) => {
   let user = users.readbyUser(decodeURI(req.params.name));
   res.status(201)
@@ -77,7 +63,7 @@ userApp.put('/update', (req, res) => {
      .json({user: userUpdated, params: req.body});
 })
 
-userApp.get('/delete/:name', (req, res) => {
+userApp.post('/delete/:name', (req, res) => {
   let user = users.deleteUser(decodeURI(req.params.name));
   res.status(201)
   .json({user: user, params: req.params})
