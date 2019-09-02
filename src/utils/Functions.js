@@ -8,7 +8,7 @@
         let minutesUser = strDateTime.substring(14,16);
         let secondsUser = strDateTime.substring(17,19);
         let splittedTime = strDateTime.split(/(:| |\/)/)
-        console.log(splittedTime);
+        //console.log(splittedTime);
         let userDateTimeTraveler = new Date(yearUser, monthUser, dayUser, hourUser, minutesUser, secondsUser);
 
         return userDateTimeTraveler;

@@ -7,43 +7,37 @@ class PrintInfo {
   constructor() {
   }
 
-
+  
   showInfo() {
-    debugger;
-    console.log(users.userList.sort(FUNCTIONS.getSortMethod('+seats')))
-/*
-  getUserOrderByTimeDistance(users, keyUser) {
-    let dateTimeKey = FUNCTIONS.parseDateTime(keyUser.route.travelTime)
-    let currentDate = new Date();//dateTime momento de la peticion
-
-    let usersOrdered = []
-    this.userList.forEach(user => {
-      if (FUNCTIONS.parseDateTime(user.route.travelTime) >= currentDate) {
-            usersOrdered.push({
-              username: user.username,
-              distance: parseFloat(FUNCTIONS.calcDistance(keyUser.position, user.position)),
-              gapTime: FUNCTIONS.parseDateTime(user.route.travelTime) - dateTimeKey,
-              userRol: user.route.userRol
-            })
-          }
-    })
-    return usersOrdered.sort(FUNCTIONS.orderUsersByDateTimeAndDistance)
-  }
-*/
-    debugger;
-      let travel = new Array;
-      let nearest = new Array;
-      users.userList.map(user => {
-        let usr = user.travelTime
-        let key = keyUser.travelTime
-        nearest.short(function(usr, key){return usr - key})
-          user.moneybox += Number(coins)
-          user.totalMoney += Number(coins)
-       
-        return user
+    const keyUser = {
+      "position": {
+        "lat":"41.234567",
+        "lon":"-3.456789"
+      },
+      "route": {
+        "travelTime":"30/08/2019 08:00:00",
+        "userRol":"Fly",
+        "Passengers":[]
+      },
+      "moneybox": 100,
+      "seats": "1",
+      "username": "PatoAlAparato"
+    };
+    let prettyUserList = [];
+    users.userList.forEach(user =>{
+      let distancia = parseFloat(FUNCTIONS.distance(keyUser.position, user.position));
+      let time = FUNCTIONS.parseDateTime(user.route.travelTime) - FUNCTIONS.parseDateTime(keyUser.route.travelTime);
+      prettyUserList.push({
+        username: user.username,
+        distance: distancia,
+        gapTime: time,
+        userRol: user.route.userRol
       })
-    }
-
+    })
+    return prettyUserList;
+  }
 }
+
+
 
 module.exports = PrintInfo

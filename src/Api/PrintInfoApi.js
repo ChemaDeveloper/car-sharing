@@ -7,7 +7,7 @@ var infoApi = express()
 infoApi.get('/data', (req, res) => {
   res.status(201)
      .json(info.showInfo())
-     console.log(info);
+     console.table(info);
 })
 
 
