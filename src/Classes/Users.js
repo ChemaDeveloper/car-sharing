@@ -137,7 +137,7 @@ class Users {
                 let i = 0;
                 let driver;
                 do {
-                    driver = this.readbyUser(driversOrderer[i].username)[0];debugger;
+                    driver = this.readbyUser(driversOrderer[i].username)[0];
                         if(driver.seats > driver.route.passengers.length){
                             this.addPassengerToCarDriver(currentPassenger, driver)
                         }
@@ -150,8 +150,6 @@ class Users {
 
     addPassengerToCarDriver(passenger, driver){
         driver.route.passengers.push(passenger);
-        console.log('añadiddo');
-        debugger;
     }
 
   sortUsers(params) {
