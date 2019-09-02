@@ -146,10 +146,22 @@ class Users {
                 while(driver.seats > 0 && driversOrderer[i].length < i && driver.route.passengers.length < driver.seats)
             }
         )
+        return this.userList;
     }
 
     addPassengerToCarDriver(passenger, driver){
         driver.route.passengers.push(passenger);
+    }
+
+    driverFillBank(){
+      let driversWhitPassenger = this.passengersFillCars();
+      driversWhitPassenger.forEach( user => {
+            if(user.route.userRol.toLowerCase() == "driver"){
+               user.moneybox += user.route.passengers.length;
+            }
+          }
+      );
+      return driversWhitPassenger;
     }
 
   sortUsers(params) {

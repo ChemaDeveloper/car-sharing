@@ -54,7 +54,12 @@ userApp.get('/passengersFillCars', (req, res) => {
   let driversFillCar = users.passengersFillCars();
   res.status(201)
   .json(driversFillCar)
-    // console.log(driversFillCar)
+})
+
+userApp.get('/fillDriverBank', (req, res) => {
+  let driversFillBank = users.driverFillBank();
+  res.status(201)
+  .json(driversFillBank)
 })
 
 
