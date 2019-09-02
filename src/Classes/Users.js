@@ -5,9 +5,14 @@ const FUNCTIONS = require('../utils/Functions')
 class Users {
   constructor(data) {
     this.userList = data
+    store.set('userBackup', data)
     this.userList.map(user => {
       user.totalMoney = user.moneybox
     })
+  }
+
+  restartUserList() {
+    this.userList = store.get('userBackup')
   }
 
   createUser(name, lat, lon, seats, userRol){
@@ -27,7 +32,6 @@ class Users {
     })
     return this.userList
   }
-
   readAll(){
     return this.userList
   }
@@ -75,39 +79,6 @@ class Users {
     return usersOrdered.sort(FUNCTIONS.getSortMethod('+gapTime', '+distance'))
   }
 
-<<<<<<< HEAD
-  filterUsersByUserRol(allUsersOrdered, filter) {
-    let usersOrderedFilter = [];
-    allUsersOrdered.forEach( user => {
-      if (user.route.userRol.toLowerCase() == filter.toLowerCase()) {
-          usersOrderedFilter.push({
-            username: user.username,
-            distance: user.distance,
-            gapTime: user.gapTime,
-            route: {
-              userRol: user.route.userRol
-            }
-        })
-      }
-    })
-    return usersOrderedFilter;
-  }
-
-
-  fillCar(name){
-    let strPassenger = 'Passenger';
-
-    let driver = this.userList.filter( user => user.username == name )
-    let allUsersOrderer = this.getUserOrderByTimeDistance(this, driver[0]);
-    let passengersOrderer = this.filterUsersByUserRol(allUsersOrderer, strPassenger)
-
-    passengersOrderer.forEach(passenger => {
-        if(driver[0].route.passengers.length <  driver[0].seats){
-            driver[0].route.passengers.push(passenger)
-        }
-    })
-    return driver[0];
-=======
     filterUsersByUserRol(allUsersOrdered, filter) {
         let usersOrderedFilter = [];
         allUsersOrdered.forEach( user => {
@@ -141,7 +112,6 @@ class Users {
           }
       })
       return currentDriver[0];
->>>>>>> 1b9788f361f391ed3de9f36ec26e18f78a4b6433
   }
 
   //añadir pasajeros una sola vez en el viaje mas cercano (llenar coche a partir de los conductor)
@@ -212,7 +182,7 @@ class Users {
         }
         else{
             dateTripMadeUpDriver.setDate(dateDay+1);
-        }debugger;
+        }
         let strDate = FUNCTIONS.dateToString(dateTripMadeUpDriver);
 
       return strDate;
