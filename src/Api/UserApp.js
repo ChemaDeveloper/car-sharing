@@ -1,8 +1,6 @@
 var Users = require('../Classes/Users')
 var users = new Users(require('../utils/baseData.json'))
-
 const express = require('express')
-
 var userApp = express()
 
 userApp.get('/', (req, res) => {
@@ -38,6 +36,12 @@ userApp.get('/fillCars', (req, res) => {
   let drivers = users.fillCars();
   res.status(201)
   .json(drivers)
+})
+
+userApp.get('/passengersFillCars', (req, res) => {
+  let driversFillCar = users.passengersFillCars();
+  res.status(201)
+  .json(driversFillCar)
 })
 
 userApp.get('/detail/:name', (req, res) => {
