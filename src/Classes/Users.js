@@ -161,11 +161,12 @@ class Users {
                user.moneybox += user.route.passengers.length;
                 //eliminar pasajeros
                user.route.passengers = [];
-                //cambiar fecha viaje al siguiente dia de diario
-                let newDateNextTrip = this.changeDateNextTrip(user);
-                //actualizar string nueva fecha
-                user.route.travelTime = newDateNextTrip;
             }
+            //cambio fecha del viaje a todos, conductores y pasajeros
+          //cambiar fecha viaje al siguiente dia de diario
+          let newDateNextTrip = this.changeDateNextTrip(user);
+          //actualizar string nueva fecha
+          user.route.travelTime = newDateNextTrip;
           }
       );
       return users;

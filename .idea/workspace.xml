@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c18892c8-2dfb-422f-82bc-3f7ace75321c" name="Default Changelist" comment="Merge branch 'master' of https://github.com/ChemaDeveloper/car-sharing into kata/ivan&#10;&#10;# Conflicts:&#10;#&#9;src/Classes/Users.js&#10;#&#9;src/utils/baseData.json">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Api/UserApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Api/UserApp.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Classes/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Functions.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +20,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Api/UserApp.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="278">
-                  <caret line="59" column="44" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="44" />
+                <state relative-caret-position="279">
+                  <caret line="46" column="28" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="28" />
                 </state>
               </provider>
             </entry>
@@ -68,8 +65,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Classes/Users.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="503">
-                  <caret line="184" column="18" selection-start-line="184" selection-start-column="18" selection-end-line="184" selection-end-column="18" />
+                <state relative-caret-position="204">
+                  <caret line="165" column="58" lean-forward="true" selection-start-line="165" selection-start-column="58" selection-end-line="165" selection-end-column="58" />
                 </state>
               </provider>
             </entry>
@@ -238,7 +235,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40988000" />
+    <option name="totallyTimeSpent" value="41813000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -253,7 +250,7 @@
     <frame x="1366" y="0" width="1600" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.17010309" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17010309" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -267,7 +264,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32893288" />
-      <window_info anchor="bottom" id="Docker" order="7" sideWeight="0.49938726" weight="0.32893288" />
+      <window_info anchor="bottom" id="Docker" order="7" sideWeight="0.49938726" weight="0.3282887" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3282887" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32130384" />
@@ -363,13 +360,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -391,17 +381,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Api/UserApp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="59" column="44" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="44" />
+        <state relative-caret-position="279">
+          <caret line="46" column="28" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Classes/Users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="184" column="18" selection-start-line="184" selection-start-column="18" selection-end-line="184" selection-end-column="18" />
+        <state relative-caret-position="204">
+          <caret line="165" column="58" lean-forward="true" selection-start-line="165" selection-start-column="58" selection-end-line="165" selection-end-column="58" />
         </state>
       </provider>
     </entry>
