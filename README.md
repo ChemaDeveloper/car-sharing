@@ -6,12 +6,12 @@ Gestión de coches – Kata
 Consideraciones previas.
 -----------------------
   1. La estructura de datos se encuentra accesible en …..
-  - Se considera conveniente el acceso de los miembros de cada equipo a un proyecto de repositorio de código, GitHub, por ejemplo
-  - La salida de los datos que se deriven de la ejecución de cada parte del reto será a consola.  
-  - Python, Shell Script, PHP o similar: terminal de ejecución
-  - Javascript: consola de depuración de Chrome o terminal de ejecución.
-  - Debe existir un acceso a internet para los componentes de los equipos, puesto que previamente al inicio del desarrollo habrán de buscar seleccionar los recursos que crean convenientes.
-  - Se propone una duración de 4 horas.
+  2. Se considera conveniente el acceso de los miembros de cada equipo a un proyecto de repositorio de código, GitHub, por ejemplo
+  3. La salida de los datos que se deriven de la ejecución de cada parte del reto será a consola.  
+  4. Python, Shell Script, PHP o similar: terminal de ejecución
+  5. Javascript: consola de depuración de Chrome o terminal de ejecución.
+  6. Debe existir un acceso a internet para los componentes de los equipos, puesto que previamente al inicio del desarrollo habrán de buscar seleccionar los recursos que crean convenientes.
+  7. Se propone una duración de 4 horas.
 
 Estructura de datos:
 --------------------
