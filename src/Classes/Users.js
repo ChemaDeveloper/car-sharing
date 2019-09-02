@@ -154,15 +154,40 @@ class Users {
     }
 
     driverFillBank(){
-      let driversWhitPassenger = this.passengersFillCars();
-      driversWhitPassenger.forEach( user => {
+      let users = this.passengersFillCars();
+      users.forEach( user => {
             if(user.route.userRol.toLowerCase() == "driver"){
+                //sumar una moneda x cada pasajero
                user.moneybox += user.route.passengers.length;
+                //eliminar pasajeros
+               user.route.passengers = [];
+                //cambiar fecha viaje al siguiente dia de diario
+                let newDateNextTrip = this.changeDateNextTrip(user);
+                //actualizar string nueva fecha
+                user.route.travelTime = newDateNextTrip;
             }
           }
       );
-      return driversWhitPassenger;
+      return users;
     }
+        //fecha del siguiente dia habil (sin contemplar festivos)
+    changeDateNextTrip(driver){
+        let dateTripMadeUpDriver = FUNCTIONS.parseDateTime(driver.route.travelTime);
+        let dayOfDate = dateTripMadeUpDriver.getDay();
+        let dateDay = dateTripMadeUpDriver.getDate();
+        if(dayOfDate==5){
+            dateTripMadeUpDriver.setDate(dateDay+3);
+        }else if(dayOfDate == 6){
+            dateTripMadeUpDriver.setDate(dateDay+2);
+        }
+        else{
+            dateTripMadeUpDriver.setDate(dateDay+1);
+        }debugger;
+        let strDate = FUNCTIONS.dateToString(dateTripMadeUpDriver);
+
+      return strDate;
+    }
+
 
   sortUsers(params) {
     console.log(this.userList.sort(FUNCTIONS.getSortMethod('+seats')))
