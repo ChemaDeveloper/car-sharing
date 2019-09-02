@@ -1,8 +1,6 @@
 var Users = require('../Classes/Users')
 var users = new Users(require('../utils/baseData.json'))
-
 const express = require('express')
-
 var userApp = express()
 
 userApp.get('/', (req, res) => {
