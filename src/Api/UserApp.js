@@ -50,6 +50,13 @@ userApp.get('/fillCars', (req, res) => {
   .json(drivers)
 })
 
+userApp.get('/passengersFillCars', (req, res) => {
+  let driversFillCar = users.passengersFillCars();
+  res.status(201)
+  .json(driversFillCar)
+    // console.log(driversFillCar)
+})
+
 
 
 userApp.get('/detail/:name', (req, res) => {
