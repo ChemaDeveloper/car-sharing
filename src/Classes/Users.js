@@ -5,9 +5,14 @@ const FUNCTIONS = require('../utils/Functions')
 class Users {
   constructor(data) {
     this.userList = data
+    store.set('userBackup', data)
     this.userList.map(user => {
       user.totalMoney = user.moneybox
     })
+  }
+
+  restartUserList() {
+    this.userList = store.get('userBackup')
   }
 
   createUser(name, lat, lon, seats, userRol){
@@ -27,7 +32,6 @@ class Users {
     })
     return this.userList
   }
-
   readAll(){
     return this.userList
   }
@@ -75,39 +79,6 @@ class Users {
     return usersOrdered.sort(FUNCTIONS.getSortMethod('+gapTime', '+distance'))
   }
 
-<<<<<<< HEAD
-  filterUsersByUserRol(allUsersOrdered, filter) {
-    let usersOrderedFilter = [];
-    allUsersOrdered.forEach( user => {
-      if (user.route.userRol.toLowerCase() == filter.toLowerCase()) {
-          usersOrderedFilter.push({
-            username: user.username,
-            distance: user.distance,
-            gapTime: user.gapTime,
-            route: {
-              userRol: user.route.userRol
-            }
-        })
-      }
-    })
-    return usersOrderedFilter;
-  }
-
-
-  fillCar(name){
-    let strPassenger = 'Passenger';
-
-    let driver = this.userList.filter( user => user.username == name )
-    let allUsersOrderer = this.getUserOrderByTimeDistance(this, driver[0]);
-    let passengersOrderer = this.filterUsersByUserRol(allUsersOrderer, strPassenger)
-
-    passengersOrderer.forEach(passenger => {
-        if(driver[0].route.passengers.length <  driver[0].seats){
-            driver[0].route.passengers.push(passenger)
-        }
-    })
-    return driver[0];
-=======
     filterUsersByUserRol(allUsersOrdered, filter) {
         let usersOrderedFilter = [];
         allUsersOrdered.forEach( user => {
@@ -141,7 +112,6 @@ class Users {
           }
       })
       return currentDriver[0];
->>>>>>> 1b9788f361f391ed3de9f36ec26e18f78a4b6433
   }
 
   //añadir pasajeros una sola vez en el viaje mas cercano (llenar coche a partir de los conductor)
@@ -176,11 +146,49 @@ class Users {
                 while(driver.seats > 0 && driversOrderer[i].length < i && driver.route.passengers.length < driver.seats)
             }
         )
+        return this.userList;
     }
 
     addPassengerToCarDriver(passenger, driver){
         driver.route.passengers.push(passenger);
     }
+
+    driverFillBank(){
+      let users = this.passengersFillCars();
+      users.forEach( user => {
+            if(user.route.userRol.toLowerCase() == "driver"){
+                //sumar una moneda x cada pasajero
+               user.moneybox += user.route.passengers.length;
+                //eliminar pasajeros
+               user.route.passengers = [];
+            }
+            //cambio fecha del viaje a todos, conductores y pasajeros
+          //cambiar fecha viaje al siguiente dia de diario
+          let newDateNextTrip = this.changeDateNextTrip(user);
+          //actualizar string nueva fecha
+          user.route.travelTime = newDateNextTrip;
+          }
+      );
+      return users;
+    }
+        //fecha del siguiente dia habil (sin contemplar festivos)
+    changeDateNextTrip(driver){
+        let dateTripMadeUpDriver = FUNCTIONS.parseDateTime(driver.route.travelTime);
+        let dayOfDate = dateTripMadeUpDriver.getDay();
+        let dateDay = dateTripMadeUpDriver.getDate();
+        if(dayOfDate==5){
+            dateTripMadeUpDriver.setDate(dateDay+3);
+        }else if(dayOfDate == 6){
+            dateTripMadeUpDriver.setDate(dateDay+2);
+        }
+        else{
+            dateTripMadeUpDriver.setDate(dateDay+1);
+        }
+        let strDate = FUNCTIONS.dateToString(dateTripMadeUpDriver);
+
+      return strDate;
+    }
+
 
   sortUsers(params) {
     console.log(this.userList.sort(FUNCTIONS.getSortMethod('+seats')))
