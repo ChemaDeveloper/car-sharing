@@ -5,14 +5,9 @@ const FUNCTIONS = require('../utils/Functions')
 class Users {
   constructor(data) {
     this.userList = data
-    store.set('userBackup', data)
     this.userList.map(user => {
       user.totalMoney = user.moneybox
     })
-  }
-
-  restartUserList() {
-    this.userList = store.get('userBackup')
   }
 
   createUser(name, lat, lon, seats, userRol){
@@ -32,9 +27,11 @@ class Users {
     })
     return this.userList
   }
+
   readAll(){
     return this.userList
   }
+
   readbyUser(name){
     return this.userList.filter((user) => user.username == name)
   }
@@ -77,38 +74,37 @@ class Users {
     return usersOrdered.sort(FUNCTIONS.getSortMethod('+gapTime', '+distance'))
   }
 
-    filterUsersByUserRol(allUsersOrdered, filter) {
-        let usersOrderedFilter = [];
-        allUsersOrdered.forEach( user => {
-                if (user.route.userRol.toLowerCase() == filter.toLowerCase()) {
-                    usersOrderedFilter.push({
-                        username: user.username,
-                        distance: user.distance,
-                        gapTime: user.gapTime,
-                        route: {
-                            userRol: user.route.userRol
-                        }
-                    });
-                }
-            });
-
-        return usersOrderedFilter;
-    }
+  filterUsersByUserRol(allUsersOrdered, filter) {
+    let usersOrderedFilter = [];
+    allUsersOrdered.forEach( user => {
+      if (user.route.userRol.toLowerCase() == filter.toLowerCase()) {
+          usersOrderedFilter.push({
+            username: user.username,
+            distance: user.distance,
+            gapTime: user.gapTime,
+            route: {
+              userRol: user.route.userRol
+            }
+        })
+      }
+    })
+    return usersOrderedFilter;
+  }
 
 
   fillCar(name){
-      let strPassenger = 'Passenger';
+    let strPassenger = 'Passenger';
 
-      let driver = this.userList.filter( user => user.username == name )
-      let allUsersOrderer = this.getUserOrderByTimeDistance(this, driver[0]);
-      let passengersOrderer = this.filterUsersByUserRol(allUsersOrderer, strPassenger)
+    let driver = this.userList.filter( user => user.username == name )
+    let allUsersOrderer = this.getUserOrderByTimeDistance(this, driver[0]);
+    let passengersOrderer = this.filterUsersByUserRol(allUsersOrderer, strPassenger)
 
-      passengersOrderer.forEach(passenger => {
-          if(driver[0].route.passengers.length <  driver[0].seats){
-              driver[0].route.passengers.push(passenger)
-          }
-      })
-     return driver[0];
+    passengersOrderer.forEach(passenger => {
+        if(driver[0].route.passengers.length <  driver[0].seats){
+            driver[0].route.passengers.push(passenger)
+        }
+    })
+    return driver[0];
   }
 //añadir pasajeros una sola vez en el viaje mas cercano
   fillCars(){

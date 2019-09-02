@@ -60,13 +60,27 @@ Endpoints:
   - Lectura: /users/detail/:name **Get**
   - Actualizar: /users/update **Put**
     - body:
-      - username
-      - lat
-      - lon
-      - userRol
-      - seats
+      - username *String*
+      - lat *Float*
+      - lon *Float*
+      - userRol *Driver o Passenger*
+      - seats *Int*
   - Eliminar: /users/delete/:name **Post**
 2. Ordenar usuarios por distancia y hora de salida
-  - userDistance: /users/userDistance
+  - userDistance: /users/userDistance **Get**
     - body:
-      - position ({"lat":latitude, "lon":longitude})
+      - position *({"lat":latitude, "lon":longitude})*
+      - date *(dd/mm/yyyy hh:mm:ss)*
+3. Añadir monedas de los usuarios
+  - Añadir: /rewards/add **Post**
+    - body:
+      - usernames *(['Chema', 'Ivan', 'Patri'] o 'Patri')*
+      - coins *Int*
+4. Quitar monedas de los usuarios
+  - Quitar: /rewards/add **Post**
+    - body:
+      - usernames *(['Chema', 'Ivan', 'Patri'] o 'Patri')*
+      - coins *Int*
+5. Ejecutar los desplazamientos
+
+6. Representar los datos de los conductores
