@@ -35,6 +35,7 @@ class Users {
   readAll(){
     return this.userList
   }
+
   readbyUser(name){
     return this.userList.filter((user) => user.username == name)
   }
@@ -61,7 +62,7 @@ class Users {
     let dateTimeKey = FUNCTIONS.parseDateTime(keyUser.route.travelTime)
     let currentDate = new Date();//dateTime momento de la peticion
 
-    let usersOrdered = []
+    let usersOrdered = [];
     users.userList.forEach(user => {
       if (FUNCTIONS.parseDateTime(user.route.travelTime) >= currentDate) {
         usersOrdered.push({
@@ -69,7 +70,8 @@ class Users {
           distance: parseFloat(FUNCTIONS.distance(keyUser.position, user.position)),
           gapTime: FUNCTIONS.parseDateTime(user.route.travelTime) - dateTimeKey,
           route: {
-              userRol: user.route.userRol
+              userRol: user.route.userRol,
+              travelTime: user.route.travelTime
           }
         })
       }
@@ -86,12 +88,12 @@ class Users {
                         distance: user.distance,
                         gapTime: user.gapTime,
                         route: {
-                            userRol: user.route.userRol
+                            userRol: user.route.userRol,
+                            travelTime: user.route.travelTime
                         }
                     });
                 }
             });
-
         return usersOrderedFilter;
     }
 
@@ -112,14 +114,45 @@ class Users {
       return currentDriver[0];
   }
 
-//añadir pasajeros una sola vez en el viaje mas cercano
+  //añadir pasajeros una sola vez en el viaje mas cercano (llenar coche a partir de los conductor)
   fillCars(){
       let drivers = this.filterUsersByUserRol(this.userList, 'Driver');
       let fillDrivers = drivers.map(driver => this.fillCar(driver.username))
       return fillDrivers;
   }
 
+  //llenar coches dependiendo de cada pasajero
+    passengersFillCars(){
+      let passengers = this.filterUsersByUserRol(this.userList, 'Passenger')
+      let nameDrivers = this.filterUsersByUserRol(this.userList, 'Driver');
+      let drivers = {
+          userList:[]
+      };
+        nameDrivers.forEach(driver => {
+            drivers.userList.push(this.readbyUser(driver.username)[0]);
+        })
+        passengers.forEach(passenger => {
+                let currentPassenger = this.readbyUser(passenger.username)[0];
+                let driversOrderer = this.getUserOrderByTimeDistance(drivers, currentPassenger);
+                let i = 0;
+                let driver;
+                do {
+                    driver = this.readbyUser(driversOrderer[i].username)[0];debugger;
+                        if(driver.seats > driver.route.passengers.length){
+                            this.addPassengerToCarDriver(currentPassenger, driver)
+                        }
+                        ++i;
+                }
+                while(driver.seats > 0 && driversOrderer[i].length < i && driver.route.passengers.length < driver.seats)
+            }
+        )
+    }
 
+    addPassengerToCarDriver(passenger, driver){
+        driver.route.passengers.push(passenger);
+        console.log('añadiddo');
+        debugger;
+    }
 
   sortUsers(params) {
     console.log(this.userList.sort(FUNCTIONS.getSortMethod('+seats')))
