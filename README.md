@@ -43,10 +43,10 @@ Puntos del reto:
   5. Un método que ejecute los desplazamientos modificando la hucha de los conductores que hayan realizado trayectos.
   6. Representar los datos de posición de los conductores.
   7. BONUS Retos extra:
-    - Distancia entre la posición introducida y los conductores.
-    - El método puede recibir un radio en el que se busca a los conductores cercanos.
-    - Los datos están organizados por su hucha, la hora del próximo desplazamiento, nombre y distancia a RSI.
-    - Añadir un nuevo campo a los usuarios que guarde los puntos totales que ha ganado.
+      - Distancia entre la posición introducida y los conductores.
+      - El método puede recibir un radio en el que se busca a los conductores cercanos.
+      - Los datos están organizados por su hucha, la hora del próximo desplazamiento, nombre y distancia a RSI.
+      - Añadir un nuevo campo a los usuarios que guarde los puntos totales que ha ganado.
 
 
 Tecnologías de desarrollo:
