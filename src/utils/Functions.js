@@ -14,6 +14,18 @@
         return userDateTimeTraveler;
     }
 
+    const dateToString = (date) => {
+    let dayUser = date.getDate();
+    let monthUser = date.getMonth();
+    let yearUser = date.getFullYear();
+    let hourUser = date.getHours();
+    let minutesUser = date.getMinutes();
+    let secondsUser = date.getSeconds();
+    let strDate = dayUser+'/'+monthUser+'/'+yearUser+' '+hourUser+':'+minutesUser+':'+secondsUser;
+
+    return strDate;
+    }
+
     function distance(position1, position2) {
       if ((position1.lat == position2.lat) && (position1.lon == position2.lon)) {
         return 0
@@ -53,5 +65,6 @@
 module.exports = {
     parseDateTime,
     getSortMethod,
-    distance
+    distance,
+    dateToString
 }
