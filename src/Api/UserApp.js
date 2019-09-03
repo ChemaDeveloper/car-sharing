@@ -17,7 +17,7 @@ userApp.post('/create/:name/:lat/:lon/:seats/:userrol', (req, res) => {
 
 userApp.get('/userDistance', (req, res) => {
   let orderedUsers = users.getUserOrderByTimeDistance(users, {
-                                                                position: JSON.parse(req.body.position), 
+                                                                position: JSON.parse(req.body.position),
                                                                 route: {
                                                                   travelTime: req.body.fecha
                                                                 }
@@ -44,7 +44,7 @@ userApp.get('/passengersFillCars', (req, res) => {
   .json(driversFillCar)
 })
 
-userApp.get('/fillDriverBank', (req, res) => {
+userApp.get('/makeShifts', (req, res) => {
   let driversFillBank = users.driverFillBank();
   res.status(201)
   .json(driversFillBank)

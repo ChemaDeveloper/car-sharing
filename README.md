@@ -82,5 +82,9 @@ Endpoints:
       - usernames *(['Chema', 'Ivan', 'Patri'] o 'Patri')*
       - coins *Int*
 5. Ejecutar los desplazamientos
+  - Primero se rellenan los coches: /users/passengersFillCars **Get**
+  - A continuación se simulan los desplazamientos: /users/makeShifts **Get**
 
 6. Representar los datos de los conductores
+  - Representa todos los datos de la App: /info/users **Get**
+  - Representa los datos de un usuario concreto: /info/user/detail/:username **Get**

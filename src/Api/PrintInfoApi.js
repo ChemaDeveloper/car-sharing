@@ -4,19 +4,17 @@ let info = new PrintInfo()
 
 var infoApi = express()
 
-infoApi.get('/data', (req, res) => {
+infoApi.get('/users', (req, res) => {
   res.status(201)
      .json(info.showInfo())
      console.table(info);
 })
 
 
-infoApi.get('/data/detail', (req, res) => {
-  users.userList = users.userList.filter((item) => item.seats == "4")
+infoApi.get('/user/detail/:username', (req, res) => {
+  users.userList = users.userList.filter(user => user.username == req.params.username)
   res.status(201)
      .json({users: users, params: req.params})
 })
 
 module.exports = infoApi
-
-
