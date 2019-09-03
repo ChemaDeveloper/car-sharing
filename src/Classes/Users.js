@@ -75,7 +75,6 @@ class Users {
     return usersOrdered.sort(FUNCTIONS.getSortMethod('+gapTime', '+distance'))
   }
 
-<<<<<<< HEAD
   filterUsersByUserRol(allUsersOrdered, filter) {
     let usersOrderedFilter = [];
     allUsersOrdered.forEach( user => {
@@ -107,25 +106,6 @@ class Users {
         }
     })
     return driver[0];
-=======
-    filterUsersByUserRol(allUsersOrdered, filter) {
-        let usersOrderedFilter = [];
-        allUsersOrdered.forEach( user => {
-                if (user.route.userRol.toLowerCase() == filter.toLowerCase()) {
-                    usersOrderedFilter.push({
-                        username: user.username,
-                        distance: user.distance,
-                        gapTime: user.gapTime,
-                        route: {
-                            userRol: user.route.userRol,
-                            travelTime: user.route.travelTime
-                        }
-                    });
-                }
-            });
-        return usersOrderedFilter;
-    }
-
 
   fillCar(name) {
       let strPassenger = 'Passenger';
